@@ -3,6 +3,10 @@ import _locale
 import execjs
 import os
 
+""" 
+使用execjs调用node.js,使用turndown框架将html转换为markdown 
+"""
+
 os.environ["NODE_PATH"] = "C:\\Users\\admin\\node_modules\\"
 os.environ["EXECJS_RUNTIME"] = "Node"
 script = '''
