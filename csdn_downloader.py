@@ -27,7 +27,7 @@ class CSDNDownloader:
         config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                  'blogs2md.ini'))
         self.profile = config.get("config", "profile")
-        self.work_dir = config.get(self.profile, "workDir") + "\\" + self.identification
+        self.work_dir = config.get(self.profile, "workDir") + os.sep + self.identification
         if not os.path.exists(self.work_dir):
             os.mkdir(self.work_dir)
         else:
@@ -119,10 +119,11 @@ class CSDNDownloader:
 
     def save_page_overall_file(self, datas, page_index):
         """ 保存每页的博客概览 """
-        if not os.path.exists(self.work_dir + "\\page_" + str(page_index + 1)):
-            os.mkdir(self.work_dir + "\\page_" + str(page_index + 1))
+        if not os.path.exists(self.work_dir + os.sep + "page_" + str(page_index + 1)):
+            os.mkdir(self.work_dir + os.sep + "page_" + str(page_index + 1))
 
-        page_blog_overall_file_path = self.work_dir + "\\page_" + str(page_index + 1) + "\page_blog_overall.txt"
+        page_blog_overall_file_path = self.work_dir + os.sep + "page_" + str(
+            page_index + 1) + os.sep + "page_blog_overall.txt"
         with open(page_blog_overall_file_path, 'w', encoding='utf-8') as page_blog_overall_file:
             page_blog_overall_file.write('当前页：' + str(page_index + 1) + '\n')
             for data in datas:
@@ -132,7 +133,7 @@ class CSDNDownloader:
         """ 保存所有的博客概览 """
         global path, file
         # 保存总体概览json
-        path = self.work_dir + "\\overall.json"
+        path = self.work_dir + os.sep + "overall.json"
         print("save overall file to :" + path)
         with open(path, 'w', encoding='utf-8') as file:
             file.write(
@@ -145,7 +146,7 @@ class CSDNDownloader:
             i += 1
             print("transform %s to markdown ,remain %d " % (blog.title, (blogs_length - i)))
             md_result = spider.transform2md(blog.link)
-            md_path = self.work_dir + "\page_" + str(blog.page_index) + "\\" + blog.title + ".md "
+            md_path = self.work_dir + os.sep + "page_" + str(blog.page_index) + os.sep + blog.title + ".md "
             with open(md_path, 'w', encoding='utf-8') as md_file:
                 md_file.write(md_result)
 

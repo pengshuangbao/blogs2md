@@ -58,3 +58,4 @@ def find_sub_str(substring, string, i):
             i -= 1
             count = count + index + 1  # 字符串位置数累加
     return count - 1
+
