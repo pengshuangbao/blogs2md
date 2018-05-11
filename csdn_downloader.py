@@ -48,6 +48,7 @@ class CSDNDownloader:
     def get_driver():
         option = webdriver.ChromeOptions()
         option.add_argument('headless')
+        option.add_argument("--no-sandbox")
         driver = webdriver.Chrome(chrome_options=option)
         return driver
 
@@ -151,17 +152,23 @@ class CSDNDownloader:
 
 if __name__ == "__main__":
     spider = CSDNDownloader(url="https://blog.csdn.net/sbpeng")
-    pageNum = spider.get_total_pages()
-    print("博客总页数：", pageNum)
-    all_blogs = []
 
-    for index in range(pageNum):
-        print("正在处理第%s页…" % (index + 1))
-        blogsInfo, blogs = spider.get_blog_info(index + 1)
-        spider.save_page_overall_file(blogsInfo, index)
-        all_blogs.extend(blogs)
+    try:
+        pageNum = spider.get_total_pages()
+        print("博客总页数：", pageNum)
+        all_blogs = []
 
-    spider.save_overall_file(all_blogs)
-    # 单个页面保存
-    spider.save_blogs_in_md(all_blogs)
-    # print(spider.transform2md("https://blog.csdn.net/sbpeng/article/details/55001467"))
+        for index in range(pageNum):
+            print("正在处理第%s页…" % (index + 1))
+            blogsInfo, blogs = spider.get_blog_info(index + 1)
+            spider.save_page_overall_file(blogsInfo, index)
+            all_blogs.extend(blogs)
+
+        spider.save_overall_file(all_blogs)
+        # 单个页面保存
+        spider.save_blogs_in_md(all_blogs)
+    except(TypeError, IndexError) as err:
+        print("got exception" + err)
+    finally:
+        print("closing driver")
+        spider.driver.close()

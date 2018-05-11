@@ -6,14 +6,16 @@
 
 - python 3.6.4rc1
 - node.js v8
-- python bs4
-- html5lib
-- selenium
+- trundown 一个nodejs包
+- python bs4 用于解析博客网页
+- html5lib 用于解析网页
+- selenium 用于模拟浏览器登录的
 - chrome-driver  2.34 headless模式
 
 ## 使用方法
 
 - 安装依赖包 pip install -r requirement.txt
+- 安装 chrome chrome-driver
 - 安装 node.js
 - 安装软件包 npm install -g turndown
 
@@ -21,7 +23,7 @@
 
 - 将workDir工作目录替换成自己的有读写权限的目录
 
-![image](http://p82ruazh4.bkt.clouddn.com/jpg/2018/5/9/9fdad54baeae5aea589ae00eaafb80da.jpg)
+![image](http://p82ruazh4.bkt.clouddn.com/jpg/2018/5/11/b7a5c874f8e0cc7bf35c453d3b1c2294.jpg)
 
 - 配置node.js的node_modules的路径
 
