@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import _locale
+from configparser import ConfigParser
+
 import execjs
 import os
 
@@ -7,7 +9,11 @@ import os
 使用execjs调用node.js,使用turndown框架将html转换为markdown 
 """
 
-os.environ["NODE_PATH"] = "C:\\Users\\admin\\node_modules\\"
+config = ConfigParser()
+config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         'blogs2md.ini'))
+profile = config.get("config", "profile")
+os.environ["NODE_PATH"] = config.get(profile, "node_module_path")
 os.environ["EXECJS_RUNTIME"] = "Node"
 script = '''
 var TurndownService = require('turndown')

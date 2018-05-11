@@ -13,11 +13,17 @@
 
 ## 使用方法
 
+- 安装依赖包 pip install -r requirement.txt
+- 安装 node.js
+- 安装软件包 npm install -g turndown
+
 ### 配置
 
-将workDir工作目录替换成自己的有读写权限的目录
+- 将workDir工作目录替换成自己的有读写权限的目录
 
 ![image](http://p82ruazh4.bkt.clouddn.com/jpg/2018/5/9/9fdad54baeae5aea589ae00eaafb80da.jpg)
+
+- 配置node.js的node_modules的路径
 
 ### 将下面的url替换为自己的博客主页地址
 
