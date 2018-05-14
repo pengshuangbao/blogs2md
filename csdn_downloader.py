@@ -173,3 +173,4 @@ if __name__ == "__main__":
     finally:
         print("closing driver")
         spider.driver.close()
+        spider.driver.quit()
